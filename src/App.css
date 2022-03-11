@@ -3,6 +3,7 @@ body{
   font-family: "Nunito", sans-serif;
   font-size: 1.6rem;
   color: rgb(56, 56, 56);
+  background-color: rgb(226, 218, 218);
 }
 
 .footer{
@@ -14,6 +15,8 @@ body{
  gap: 20px;
  height: 7vh;
  width: 100vw;
+ position: absolute;
+ bottom: 0;
  color:#e0dddd;
  background-color: black;
 }
@@ -68,6 +71,7 @@ body{
   flex-direction: column;
   align-items: center;
   background-color: rgb(226, 218, 218);
+  margin-bottom: 3rem;
 }
 .current-best-score{
   display: flex;

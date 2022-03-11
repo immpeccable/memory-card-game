@@ -70,38 +70,22 @@ let Main = () => {
 
         setSuffleArray(newArray);
     }
-    useEffect(() => {
-
-        
-        let onClickPoke = () => {
-            shuffleAlgo();
-        }
-        document.addEventListener('click', onClickPoke);
-
-        return () => {
-            document.removeEventListener("click", onClickPoke);
-        };
-
-    }, [shuffleArray, bestScore, currentScore, clickedPokemons])
 
     async function clickPokemon (event){
         let isSame = false;
 
-        console.log('event');
-        console.log(event.target);
-        console.log(event.target.id);
         for(let i = 0; i<clickedPokemons.length; i++){
             if(clickedPokemons[i] === event.target.id){
                 isSame = true;
                 break;
             }
         }
-        console.log(isSame);
+        
         if(!isSame){
             await setCurrentScore(currentScore + 1);
-            console.log("false: "+event.target.id);
+            
             await setClickedPokemons([...clickedPokemons, event.target.id])
-            console.log("merhaba");
+            
         }
         else{
             if(currentScore > bestScore){
@@ -111,7 +95,7 @@ let Main = () => {
             await setClickedPokemons(a);
             await setCurrentScore(0);
         }
-        console.log(clickedPokemons);
+        shuffleAlgo();
     }
 
 
