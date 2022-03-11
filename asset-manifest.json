@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/memory-card-game/static/css/main.fdf28b7d.css",
-    "main.js": "/memory-card-game/static/js/main.b3432983.js",
+    "main.css": "/memory-card-game/static/css/main.21a25018.css",
+    "main.js": "/memory-card-game/static/js/main.3e289e98.js",
     "static/media/155631.svg": "/memory-card-game/static/media/155631.413d7b1ffaad72dbb86d3982294bfa07.svg",
     "static/media/venusaur-seeklogo.com.svg": "/memory-card-game/static/media/venusaur-seeklogo.com.5d21c18f39e363752e35a3495353d6e3.svg",
     "static/media/blastoise-seeklogo.com.svg": "/memory-card-game/static/media/blastoise-seeklogo.com.3cd72b04c26ecf61339032d1f6589011.svg",
@@ -15,11 +15,11 @@
     "static/media/squirtle-seeklogo.com.svg": "/memory-card-game/static/media/squirtle-seeklogo.com.23b125deccc69bc4e7295a13e0b3a4d1.svg",
     "static/media/pikachu-seeklogo.com.svg": "/memory-card-game/static/media/pikachu-seeklogo.com.84ff9339d4d4fbf9e0489ea9456722e7.svg",
     "index.html": "/memory-card-game/index.html",
-    "main.fdf28b7d.css.map": "/memory-card-game/static/css/main.fdf28b7d.css.map",
-    "main.b3432983.js.map": "/memory-card-game/static/js/main.b3432983.js.map"
+    "main.21a25018.css.map": "/memory-card-game/static/css/main.21a25018.css.map",
+    "main.3e289e98.js.map": "/memory-card-game/static/js/main.3e289e98.js.map"
   },
   "entrypoints": [
-    "static/css/main.fdf28b7d.css",
-    "static/js/main.b3432983.js"
+    "static/css/main.21a25018.css",
+    "static/js/main.3e289e98.js"
   ]
 }
