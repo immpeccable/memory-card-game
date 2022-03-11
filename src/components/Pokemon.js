@@ -11,9 +11,9 @@ class Pokemon extends Component {
     }
 
     render(){
-        return <button id = {this.props.name} className='pokeButton'>
-             <img className='pokeImg' src = {this.props.poke} alt = 'pokemon'></img>
-            <div className = "pokeText">{this.props.name}</div>
+        return <button onClick={this.props.onClick} id = {this.props.name} className='pokeButton'>
+             <img id = {this.props.name} className='pokeImg' src = {this.props.poke} alt = 'pokemon'></img>
+            <div id = {this.props.name} className = "pokeText">{this.props.name}</div>
         </button>
     }
 

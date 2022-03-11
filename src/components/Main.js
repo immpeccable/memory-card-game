@@ -19,7 +19,7 @@ import { click } from '@testing-library/user-event/dist/click';
 
 let Main = () => {
 
-    
+
     let allPokes = {
         Charizard: charizard,
         Blastoise: blastoise,
@@ -34,70 +34,91 @@ let Main = () => {
         Venesaur: venesaur,
         Wartortle: wartortle
     }
-    let [shuffleArray, setSuffleArray] = useState(['Charizard', 'Blastoise', 'Bulbasaur', 'Butterfree', 'Charmander', 'Ivysaur', 'Nidoran', 'Pikachu', 'Spearow', 'Squirtle', 'Venesaur', 'Wartortle'])
+    let initEl = () => {
+        let tmp = ['Charizard', 'Blastoise', 'Bulbasaur', 'Butterfree', 'Charmander', 'Ivysaur', 'Nidoran', 'Pikachu', 'Spearow', 'Squirtle', 'Venesaur', 'Wartortle']
+        let newArray = [];
+
+        for (let i = 0; i < 12; i++) {
+            let rnumber = Math.floor(Math.random() * (12 - i));
+            newArray.push(tmp[rnumber]);
+
+            tmp = tmp.filter(function (el) {
+                return el !== tmp[rnumber];
+            })
+        }
+        return newArray;
+    }
+    
+    let [shuffleArray, setSuffleArray] = useState(initEl())
     let [bestScore, setBestScore] = useState(0);
     let [currentScore, setCurrentScore] = useState(0)
     let [clickedPokemons, setClickedPokemons] = useState([]);
 
-    
 
+    let shuffleAlgo = () => {
+        let newArray = [];
+        let tempShuffle = shuffleArray;
 
+        for (let i = 0; i < 12; i++) {
+            let rnumber = Math.floor(Math.random() * (12 - i));
+            newArray.push(tempShuffle[rnumber]);
 
+            tempShuffle = tempShuffle.filter(function (el) {
+                return el !== tempShuffle[rnumber];
+            })
+        }
+
+        setSuffleArray(newArray);
+    }
     useEffect(() => {
 
-        console.log("merhaba");
-        let onClickPoke = () => {
-            let newArray = [];
-            let tempShuffle = shuffleArray;
-
-            for (let i = 0; i < 12; i++) {
-                let rnumber = Math.floor(Math.random() * (12 - i));
-                newArray.push(tempShuffle[rnumber]);
-
-                tempShuffle = tempShuffle.filter(function (el) {
-                    return el !== tempShuffle[rnumber];
-                })
-                console.log("shuffle")
-                console.log(tempShuffle);
-            }
-            console.log("newarray");
-            console.log(newArray);
-            
-            setSuffleArray(newArray);
-            
-            console.log("last");
-            console.log(shuffleArray);
-        }
         
+        let onClickPoke = () => {
+            shuffleAlgo();
+        }
         document.addEventListener('click', onClickPoke);
 
         return () => {
             document.removeEventListener("click", onClickPoke);
-          };
+        };
 
-    })
+    }, [shuffleArray, bestScore, currentScore, clickedPokemons])
 
-    let clickPokemon = (event) => {
-        /*let isSame = false;
-        for (let i = 0; i < clickedPokemons.length; i++) {
-            if (clickedPokemons[i] === event.target.id) {
-                console.log("same")
+    async function clickPokemon (event){
+        let isSame = false;
+
+        console.log('event');
+        console.log(event.target);
+        console.log(event.target.id);
+        for(let i = 0; i<clickedPokemons.length; i++){
+            if(clickedPokemons[i] === event.target.id){
                 isSame = true;
                 break;
             }
         }
-        if (!isSame) {
-            setClickedPokemons(...clickedPokemons, event.target.id)
-            console.log("not the same");
-        }*/
-        setCurrentScore(currentScore+1);
+        console.log(isSame);
+        if(!isSame){
+            await setCurrentScore(currentScore + 1);
+            console.log("false: "+event.target.id);
+            await setClickedPokemons([...clickedPokemons, event.target.id])
+            console.log("merhaba");
+        }
+        else{
+            if(currentScore > bestScore){
+                await setBestScore(currentScore);
+            }
+            let a = [];
+            await setClickedPokemons(a);
+            await setCurrentScore(0);
+        }
+        console.log(clickedPokemons);
     }
 
 
     let shufflePokemons = () => {
         return <div className='poke-grid'>
             {shuffleArray.map((el) => {
-                return <Pokemon poke={allPokes[el]} name={el}></Pokemon>
+                return <Pokemon onClick = {clickPokemon} poke={allPokes[el]} name={el}></Pokemon>
             })}
         </div>
     }
